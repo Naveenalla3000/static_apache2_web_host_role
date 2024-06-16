@@ -1,0 +1,14 @@
+---
+# tasks file for static_apache_web_host_role
+- name: Install Apache httpd
+  ansible.builtin.apt:
+    name: apache2
+    state: present
+    update_cache: yes
+- name: Copy the file templates/index.html to /var/www/html/index.html with owner permissions
+  ansible.builtin.template:
+    src: files/index.html
+    dest: /var/www/html
+    owner: root
+    group: root
+    mode: '0644'
